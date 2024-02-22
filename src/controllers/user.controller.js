@@ -15,9 +15,21 @@ export const signup = async(req, res)=> {
 export const signin = async(req, res)=> {
     try {
         const user = await userServices.isUser(req.body.email)
-        const accessToken = await createToken({id:user._id, email:user.email,fullname:user.fullname, role:user.role})
-        res.cookie('accessToken',accessToken)
-        res.status(200).send({success:true,message:'cookie has been set!', user})
+        const accessToken = await createToken({id:user._id, email:user.email,fullname:user.fullname, mobile:user.mobile})
+        // res.cookie('accessToken',accessToken)
+        res.status(200).send({success:true, message:'cookie has been set!', user, accessToken})
+    } catch (error) {
+        res.status(501).send({success:false, message:error.message});
+    }
+}
+
+export const addResume = async(req, res)=> {
+    const {id} = req.user
+    if(!req.file) return res.status(400).send({success:false, message:"file not selected"})
+    try {
+        const user = await userServices.uploadCv(id,req.file.filename)
+        console.log(user);
+        res.status(200).send({success:true, message:'file uploaded', user})
     } catch (error) {
         res.status(501).send({success:false, message:error.message});
     }

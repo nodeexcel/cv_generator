@@ -9,8 +9,10 @@ const app = express();
 
 //global middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({origin:'*'}));
 app.use(cookieParser());
+app.use('/resumes', express.static('src/uploads'))
+
 
 //routes
 app.use("/api/v1/user", userRoute);

@@ -1,6 +1,7 @@
 import * as userServices from "../services/user.services.js";
-import bcrypt from 'bcryptjs';
-
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
+import { constant } from "../config/constants.js";
 
 export const isExist = async (req, res, next)=>{
     try {
@@ -21,5 +22,18 @@ export const isExist = async (req, res, next)=>{
         }
     } catch (error) {
         res.status(501).send({success:false, message:error.message});
+    }
+}
+
+export const verifyUser = async(req, res, next) => {
+    try {
+        const token = req.headers.authorization?.split(" ")[1];
+        if(!token) return res.status(403).send({message:"anauthorized or access token missing"})
+        const decodedUser = await jwt.verify(token, constant.SECRET_KEY);
+        if(!decodedUser) return res.status(401).send({message:"unauthorized"});
+        req.user = decodedUser;
+        next();
+    } catch (error) {
+        res.status(500).send({success:false, message:error.message});
     }
 }

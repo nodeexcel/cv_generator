@@ -1,6 +1,4 @@
 import mongoose from 'mongoose';
-
-
 const userSchema = new mongoose.Schema({
     fullname:{
         type:String,
@@ -16,6 +14,10 @@ const userSchema = new mongoose.Schema({
     },
     mobile:{
         type:String
+    },
+    cvLink:{
+        type:String,
+        default:""
     }
 })
 
