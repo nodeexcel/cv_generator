@@ -28,8 +28,17 @@ export const addResume = async(req, res)=> {
     if(!req.file) return res.status(400).send({success:false, message:"file not selected"})
     try {
         const user = await userServices.uploadCv(id,req.file.filename)
-        console.log(user);
         res.status(200).send({success:true, message:'file uploaded', user})
+    } catch (error) {
+        res.status(501).send({success:false, message:error.message});
+    }
+}
+
+export const getUser = async(req, res)=> {
+    const {id} = req.user
+    try {
+        const user = await userServices.getUser(id)
+        res.status(200).send({success:true, message:'data fetched successfully', user})
     } catch (error) {
         res.status(501).send({success:false, message:error.message});
     }

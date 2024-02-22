@@ -1,26 +1,61 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 const cvSchema = new mongoose.Schema({
-    accountSetting:{
-        firstName:{type:String},
-        lastName:{type:String},
-        phoneNo:{},
-        links:{
-            github:{},
-            linkedin:{},
-            website:{}
-        }
+  personalInfo: {
+    firstName: {
+      type: String,
+      required: true,
     },
-    workEcperince:[
-        {
-            title:{
-                
-            },
+    lastName: String,
+    email: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    address: String,
+    links: {
+      github: String,
+      linkedin: String,
+      website: String,
+    },
+  },
+  education: [
+    {
+      institution: String,
+      degree: String,
+      fieldOfStudy: String,
+      startDate: Date,
+      endDate: Date,
+    },
+  ],
+  experience: [
+    {
+      company: String,
+      position: String,
+      startDate: Date,
+      endDate: Date,
+      responsibilities: String,
+    },
+  ],
+  skills: [String],
+  languages: [
+    {
+      language: String,
+      proficiency: String
+    },
+  ],
+  certifications: [
+    {
+      name: String,
+      organization: String,
+      date: Date,
+    },
+  ],
+  userId: {
+    type: String,
+  }
+});
 
-        }
-    ],
-    userId:{
-        type:String
-    }
-})
-
-export const Cv = mongoose.model('Cv', cvSchema);
+export const Cv = mongoose.model("Cv", cvSchema);

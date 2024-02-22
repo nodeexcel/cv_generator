@@ -16,8 +16,8 @@ const userSchema = new mongoose.Schema({
         type:String
     },
     cvLink:{
-        type:String,
-        default:""
+        type:[String],
+        default:null
     }
 })
 
