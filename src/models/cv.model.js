@@ -3,40 +3,40 @@ const cvSchema = new mongoose.Schema({
   personalInfo: {
     firstName: {
       type: String,
-      required: true,
+      required: true
     },
     lastName: String,
     email: {
       type: String,
-      required: true,
+      required: true
     },
     phone: {
       type: String,
-      required: true,
+      required: true
     },
     address: String,
     links: {
       github: String,
       linkedin: String,
-      website: String,
-    },
+      website: String
+    }
   },
   education: [
     {
       institution: String,
       degree: String,
       fieldOfStudy: String,
-      startDate: Date,
-      endDate: Date,
+      startDate: String,
+      endDate: String
     },
   ],
   experience: [
     {
       company: String,
       position: String,
-      startDate: Date,
-      endDate: Date,
-      responsibilities: String,
+      startDate: String,
+      endDate: String,
+      responsibilities: String
     },
   ],
   skills: [String],
@@ -50,7 +50,7 @@ const cvSchema = new mongoose.Schema({
     {
       name: String,
       organization: String,
-      date: Date,
+      date: String,
     },
   ],
   userId: {

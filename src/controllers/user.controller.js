@@ -53,4 +53,24 @@ export const logout = async(req, res)=> {
     }
 }
 
+export const saveTemplet = async(req, res)=> {
+    try {
+        const {id} = req.user
+        const data = await userServices.saveTemplet(id, req.body)
+        return res.status(200).send({success: true, message:"Resume saved", data})
+    } catch (error) {
+        res.status(501).send({success:false, message:error.message});
+    }
+}
+
+export const getTemplet = async(req, res)=> {
+    try {
+        const {id} = req.user
+        const data = userServices.getTemplet(id)
+        res.status(200).send({success: true, message:"Resume fetched", data})
+    } catch (error) {
+        res.status(501).send({success:false, message:error.message});
+    }
+}
+
 const createToken = async(payload) => await jwt.sign(payload, constant.SECRET_KEY);
