@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
-    fullname:{
+    firstname:{
+        type:String,
+        requird:true,
+    },
+    lastname:{
         type:String,
         requird:true,
     },
@@ -15,10 +19,13 @@ const userSchema = new mongoose.Schema({
     mobile:{
         type:String
     },
-    cvLink:{
-        type:[String],
-        default:null
-    }
-})
+    cvLink:[{
+        link:{
+            type:String,
+            default:null
+        },
+        updatedAt:Date,
+    }]
+}, {timestamps:true})
 
 export const User = mongoose.model('User', userSchema);
