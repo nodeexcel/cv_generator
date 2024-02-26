@@ -17,7 +17,7 @@ export const signin = async(req, res)=> {
         const user = await userServices.isUser(req.body.email)
         const accessToken = await createToken({id:user._id, email:user.email,fullname:user.fullname, mobile:user.mobile})
         // res.cookie('accessToken',accessToken)
-        res.status(200).send({success:true, message:'cookie has been set!', user, accessToken})
+        res.status(200).send({success:true, message:'you are successfully logged in', user, accessToken})
     } catch (error) {
         res.status(501).send({success:false, message:error.message});
     }
@@ -38,7 +38,7 @@ export const getUser = async(req, res)=> {
     const {id} = req.user
     try {
         const user = await userServices.getUser(id)
-        res.status(200).send({success:true, message:'data fetched successfully', user})
+        res.status(200).send({success:true, message:'user fetched successfully', user})
     } catch (error) {
         res.status(501).send({success:false, message:error.message});
     }
@@ -65,9 +65,19 @@ export const saveTemplet = async(req, res)=> {
 
 export const getTemplet = async(req, res)=> {
     try {
-        const {id} = req.user
-        const data = userServices.getTemplet(id)
+        const {id} = req.params
+        const data = await userServices.getTemplet(id)
         res.status(200).send({success: true, message:"Resume fetched", data})
+    } catch (error) {
+        res.status(501).send({success:false, message:error.message});
+    }
+}
+
+export const updateTemplet = async(req, res)=> {
+    try {
+        const {id} = req.params
+        const data = await userServices.updateTemplet(id,req.body)
+        res.status(200).send({success: true, message:"Resume Updated", data})
     } catch (error) {
         res.status(501).send({success:false, message:error.message});
     }
