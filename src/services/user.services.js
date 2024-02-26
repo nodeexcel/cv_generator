@@ -6,7 +6,8 @@ export const isUser = async (email) => {
 };
 
 export const signup = async (user) => {
-  return await User.create(user);
+  const userData = await User.create(user);
+  return userData.save()
 };
 
 export const uploadCv = async (id, link) => {
@@ -48,6 +49,10 @@ export const saveTemplet = async (id, data) => {
   return await userData.save();
 };
 
-export const getTemplet = async (userId) => {
-  return await Cv.findOne({ userId });
+export const getTemplet = async (id) => {
+  return await Cv.findById(id).select('-userId')
+};
+
+export const updateTemplet = async (reqId,data) => {
+  return await Cv.findByIdAndUpdate(reqId,data,{new:true})
 };
