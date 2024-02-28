@@ -26,16 +26,14 @@ const cvSchema = new mongoose.Schema({
       institution: String,
       degree: String,
       fieldOfStudy: String,
-      startDate: String,
-      endDate: String
+      dateRange: [String]
     },
   ],
   experience: [
     {
       company: String,
       position: String,
-      startDate: String,
-      endDate: String,
+      dateRange: [String],
       responsibilities: String
     },
   ],

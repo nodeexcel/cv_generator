@@ -1,5 +1,5 @@
 import express from "express"
-import {signup,signin,logout,addResume,getUser,saveTemplet,getTemplet,updateTemplet} from '../controllers/user.controller.js'
+import {signup,signin,logout,addResume,getUser,saveTemplet,getTemplet,updateTemplet,deleteCv} from '../controllers/user.controller.js'
 import {isExist, verifyUser} from '../middleware/user.middleware.js'
 import { upload } from "../config/multerConfig.js"
 
@@ -13,3 +13,4 @@ userRoute.post('/logout', logout)
 userRoute.post('/cv/create',verifyUser, saveTemplet)
 userRoute.get('/cv/fetch/:id',verifyUser, getTemplet)
 userRoute.put('/cv/update/:id',verifyUser, updateTemplet)
+userRoute.delete('/cv/delete/:id',verifyUser, deleteCv)
