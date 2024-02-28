@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
             type:String,
             default:null
         },
+        templetId:{
+            type:String,
+            default:null
+        },
         updatedAt:Date,
     }]
 }, {timestamps:true})

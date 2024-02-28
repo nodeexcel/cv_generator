@@ -28,9 +28,9 @@ export const isExist = async (req, res, next)=>{
 export const verifyUser = async(req, res, next) => {
     try {
         const token = req.headers.authorization?.split(" ")[1];
-        if(!token) return res.status(403).send({message:"anauthorized or access token missing"})
+        if(!token) return res.status(403).send({message:"Unauthorized or access token missing"})
         const decodedUser = await jwt.verify(token, constant.SECRET_KEY);
-        if(!decodedUser) return res.status(401).send({message:"unauthorized"});
+        if(!decodedUser) return res.status(401).send({message:"Unauthorized"});
         req.user = decodedUser;
         next();
     } catch (error) {
