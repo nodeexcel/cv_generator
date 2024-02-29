@@ -26,15 +26,18 @@ const cvSchema = new mongoose.Schema({
       institution: String,
       degree: String,
       fieldOfStudy: String,
-      dateRange: [String]
+      startDate: String,
+      endDate: String
     },
   ],
   experience: [
     {
       company: String,
       position: String,
-      dateRange: [String],
-      responsibilities: String
+      startDate: String,
+      endDate: String,
+      responsibilities: [String],
+      environments:[String]
     },
   ],
   skills: [String],
@@ -44,6 +47,11 @@ const cvSchema = new mongoose.Schema({
       proficiency: String
     },
   ],
+  projects:[{
+    projectName:String,
+    desc:String,
+    technologies:[String]
+  }],
   certifications: [
     {
       name: String,

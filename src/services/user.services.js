@@ -64,7 +64,7 @@ export const deleteCv = async (id,userId) => {
     const userData = await User.findById(userId)
     let i=0
     let filename
-    let templetId = undefined
+    let templetId
     userData.cvLink.some((cvLinkObj) => {
       if(cvLinkObj._id == id){
         templetId = cvLinkObj.templetId
