@@ -83,6 +83,10 @@ export const updateTemplet = async(req, res)=> {
     }
 }
 
+export const updateCv = async(req, res) =>{
+    
+}
+
 export const deleteCv = async(req, res)=> {
     try {
         const cv_id = req.params
