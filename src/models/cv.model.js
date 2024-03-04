@@ -19,8 +19,10 @@ const cvSchema = new mongoose.Schema({
       github: String,
       linkedin: String,
       website: String
-    }
+    },
+    designation:String
   },
+  summary:String,
   education: [
     {
       institution: String,
@@ -50,7 +52,7 @@ const cvSchema = new mongoose.Schema({
   projects:[{
     projectName:String,
     desc:String,
-    technologies:[String]
+    technologies:String
   }],
   certifications: [
     {

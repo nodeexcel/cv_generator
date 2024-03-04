@@ -2,6 +2,9 @@ import express from "express"
 import {signup,signin,logout,addResume,getUser,saveTemplet,getTemplet,updateTemplet,deleteCv} from '../controllers/user.controller.js'
 import {isExist, verifyUser} from '../middleware/user.middleware.js'
 import { upload } from "../config/multerConfig.js"
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 export const userRoute = express.Router()
 
